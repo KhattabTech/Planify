@@ -1,9 +1,12 @@
 {
+  "homepage": "https://KhattabTech.github.io/Planify",
   "name": "task-tracker",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -17,6 +20,7 @@
     "@tiptap/starter-kit": "^2.11.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
+    "gh-pages": "^6.3.0",
     "quill": "^2.0.3",
     "react": "^18.3.1",
     "react-beautiful-dnd": "^13.1.1",
