@@ -1,0 +1,59 @@
+/* تخصيص تقويم React */
+.react-calendar {
+    background-color: #101726; /* خلفية داكنة مثل اللون الرئيسي */
+    color: white; /* نص أبيض ليتماشى مع التصميم الداكن */
+    border-radius: 8px;
+    border-color: #101726;
+    margin: auto;
+    
+  }
+  
+  .react-calendar__tile {
+    background-color: #1f2937; /* خلفية داكنة مائلة إلى الرمادي */
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease; /* تأثير التحول عند التفاعل */
+  }
+  
+  .react-calendar__tile:hover {
+    background-color: #3b82f6; /* تغيير اللون عند المرور على الخلية إلى الأزرق الفاتح */
+    transform: scale(1.05); /* تأثير تكبير خفيف */
+  }
+  
+  .react-calendar__tile--active {
+    background-color: #3b82f6; /* لون للخلايا النشطة (لون أزرق فاتح) */
+    color: white;
+  }
+  
+  .react-calendar__tile--now {
+    background-color: #3b82f6; /* لون مميز لليوم الحالي (أصفر فاتح) */
+    color: black; /* لون نص اليوم الحالي أسود ليتماشى مع الخلفية */
+    font-weight: bold; /* جعل النص ثقيل لتمييزه */
+  }
+  
+  /* تخصيص لون أيام الأسبوع */
+  .react-calendar__month-view__weekdays__weekday {
+    color: #c9d0da; /* تغيير لون جميع أيام الأسبوع إلى الأصفر الفاتح */
+    font-weight: bold; /* جعل النص ثقيل لتمييزه */
+  }
+  
+  /* تخصيص زر التنقل */
+  .react-calendar__navigation button {
+    background-color: #1f2937; /* زر التنقل بلون داكن */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 12px;
+    cursor: pointer;
+  }
+  
+  .react-calendar__navigation button:hover {
+    background-color: #3b82f6; /* تغيير اللون عند المرور بالماوس */
+  }
+  
+  /* تخصيص الأيام المجاورة للشهر الحالي */
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: #777; /* تغيير لون الأيام التي تخص الشهر السابق أو التالي */
+  }
+  .react-calendar__month-view__days__day--weekend {
+    color: #7ba9f1; /* تغيير لون عطلات نهاية الأسبوع (السبت والأحد) */
+  }

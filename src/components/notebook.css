@@ -1,0 +1,53 @@
+.notebook-container {
+  max-width: 100%;
+  margin: 24px auto;
+  background: #f9f9f9;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quill {
+  background: white;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+}
+.ql-container {
+  height: 78%;
+}
+.corner-fold {
+  width: 16px;
+  height: 16px;
+  background: #000; 
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 15px 0 0;
+  overflow: hidden;
+  z-index: 10; 
+}
+.ql-editor {
+  background-color: #333333  !important; 
+  color: #E0E0E0 !important; 
+}
+
+.ql-toolbar {
+  background-color: #333333 !important;
+  border: none;
+  color: #E0E0E0 !important; 
+}
+
+.ql-toolbar .ql-picker {
+  background-color: #444444 !important; 
+  color: #E0E0E0 !important;
+}
+
+.ql-toolbar button {
+  color: #E0E0E0 !important; 
+}
+
+.ql-tooltip {
+  background-color: #333333 !important; 
+  color: #E0E0E0 !important;
+}
+
