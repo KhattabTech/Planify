@@ -19,6 +19,10 @@ const TaskList = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newTask, setNewTask] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
+  const [selectedPriority, setSelectedPriority] = useState("Low");
+  const [selectedStatus, setSelectedStatus] = useState("Not started");
+
+  const [priorityDropdownOpen, setPriorityDropdownOpen] = useState(false);
 
   useEffect(() => {
     const storedTasks = localStorage.getItem("tasks");
@@ -41,7 +45,7 @@ const TaskList = () => {
         ...prevTasks,
         [selectedDay]: [
           ...prevTasks[selectedDay],
-          { task: newTask, checked: false },
+          { task: newTask, checked: false, priority: selectedPriority, status: selectedStatus },
         ],
       }));
       setNewTask("");
@@ -53,6 +57,7 @@ const TaskList = () => {
   const toggleCheckbox = (day, index) => {
     const updatedTasks = [...tasks[day]];
     updatedTasks[index].checked = !updatedTasks[index].checked;
+    updatedTasks[index].status = updatedTasks[index].checked ? "Done" : "Not started";
 
     setTasks((prevTasks) => ({
       ...prevTasks,
@@ -81,12 +86,37 @@ const TaskList = () => {
     return text.length > length ? text.substring(0, length) + "..." : text;
   };
 
+  const priorityStyles = (priority) => {
+    switch (priority) {
+      case "High":
+        return "bg-red-500 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+      case "Medium":
+        return "bg-yellow-500 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+      case "Low":
+        return "bg-blue-500 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+      default:
+        return "text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+    }
+  };
+  
+  const statusStyles = (status) => {
+    switch (status) {
+      case "Done":
+        return "bg-green-500 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+      case "Not started":
+        return "bg-gray-400 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+      default:
+        return "bg-gray-400 text-black text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
+    }
+  };
+  
+
   return (
     <div className="bg-gray-50 p-6 rounded-xl shadow-md">
       <h2 className="text-2xl font-extrabold mb-6 text-gray-800 text-center">
         Task List
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 2xl:grid-cols-3  gap-6">
         {Object.keys(tasks).map((day) => (
           <motion.div
             key={day}
@@ -116,12 +146,22 @@ const TaskList = () => {
                       {truncateText(task.task)}
                     </span>
                   </label>
-                  <button
-                    onClick={() => deleteTask(day, idx)}
-                    className="text-red-500 hover:text-red-700 transition-transform transform hover:scale-110"
-                  >
-                    <AiOutlineDelete size={20} />
-                  </button>
+                  <div className="flex items-center space-x-2">
+                    <span className={`px-2 py-1 w-20 text-center rounded-full ${priorityStyles(task.priority)}`}>
+                      {task.priority}
+                    </span>
+                    <span
+                      className={`px-2 py-1 w-24 text-center rounded-full ${statusStyles(task.status)}`}
+                    >
+                      {task.status}
+                    </span>
+                    <button
+                      onClick={() => deleteTask(day, idx)}
+                      className="text-red-500 hover:text-red-700 transition-transform transform hover:scale-110"
+                    >
+                      <AiOutlineDelete size={20} />
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>
@@ -151,10 +191,10 @@ const TaskList = () => {
       </div>
       {isModalOpen && (
         <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.3 }}
+          className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50"
         >
           <div className="bg-dark text-black p-6 rounded-2xl shadow-xl w-96">
             <h3 className="text-2xl font-bold mb-4 text-center text-white">
@@ -167,6 +207,46 @@ const TaskList = () => {
               className="w-full p-3 mb-4 bg-gray-700 text-white border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Enter new task"
             />
+            <div className="mb-4">
+              <label className="text-white">Priority</label>
+              <button
+                onClick={() => setPriorityDropdownOpen(!priorityDropdownOpen)}
+                className={`w-full py-2 text-white rounded-lg ${priorityStyles(selectedPriority)} focus:outline-none`}
+              >
+                {selectedPriority}
+              </button>
+              {priorityDropdownOpen && (
+                <div className="mt-2 gap-3 flex bg-gray-800 rounded-lg p-2">
+                  <button
+                    onClick={() => {
+                      setSelectedPriority("Low");
+                      setPriorityDropdownOpen(false);
+                    }}
+                    className="block w-full text-center rounded-3xl text-white my-4 bg-blue-500 py-2"
+                  >
+                    Low
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedPriority("Medium");
+                      setPriorityDropdownOpen(false);
+                    }}
+                    className="block w-full text-center rounded-3xl text-white my-4 bg-yellow-500 py-2"
+                  >
+                    Medium
+                  </button>
+                  <button
+                    onClick={() => {
+                      setSelectedPriority("High");
+                      setPriorityDropdownOpen(false);
+                    }}
+                    className="block w-full text-center rounded-3xl text-white my-4 bg-red-500 py-2"
+                  >
+                    High
+                  </button>
+                </div>
+              )}
+            </div>
             <div className="flex space-x-4">
               <button
                 onClick={addTask}
