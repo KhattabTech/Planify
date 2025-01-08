@@ -1,6 +1,6 @@
 ---
 
-### Productivity Dashboard App
+### planify Dashboard App
 
 This is a full-featured productivity dashboard designed to help users stay organized and achieve their goals efficiently. The app includes a collection of essential productivity tools such as a **Task List**, **Habit Tracker**, **Pomodoro Timer**, and **Notebooks**. Each tool is tailored to assist in managing tasks, tracking habits, staying focused, and maintaining quick access to notes.
 
@@ -26,7 +26,7 @@ This is a full-featured productivity dashboard designed to help users stay organ
 
 ---
 
-This project provides a seamless and enjoyable experience for users looking to boost their productivity. Whether it’s managing tasks, tracking habits, or keeping notes, the app provides all the necessary tools in one place.
+This project planify a seamless and enjoyable experience for users looking to boost their productivity. Whether it’s managing tasks, tracking habits, or keeping notes, the app provides all the necessary tools in one place.
 
 Feel free to clone, contribute, or explore the code! 🚀
 
