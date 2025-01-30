@@ -12,6 +12,8 @@ const StickyNotes = () => {
   const [activeNoteIndex, setActiveNoteIndex] = useState(null);
   const [selectedColor, setSelectedColor] = useState("#FFD700");
 
+
+
   const colors = [
     "#FFEB7A",
     "#87CEEB",

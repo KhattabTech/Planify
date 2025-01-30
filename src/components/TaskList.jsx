@@ -20,7 +20,7 @@ const TaskList = () => {
   const [newTask, setNewTask] = useState("");
   const [selectedDay, setSelectedDay] = useState("");
   const [selectedPriority, setSelectedPriority] = useState("Low");
-  const [selectedStatus, setSelectedStatus] = useState("Not started");
+  const [selectedStatus, setSelectedStatus] = useState("Pending");
 
   const [priorityDropdownOpen, setPriorityDropdownOpen] = useState(false);
 
@@ -57,7 +57,7 @@ const TaskList = () => {
   const toggleCheckbox = (day, index) => {
     const updatedTasks = [...tasks[day]];
     updatedTasks[index].checked = !updatedTasks[index].checked;
-    updatedTasks[index].status = updatedTasks[index].checked ? "Done" : "Not started";
+    updatedTasks[index].status = updatedTasks[index].checked ? "Done" : "Pending";
 
     setTasks((prevTasks) => ({
       ...prevTasks,
@@ -103,7 +103,7 @@ const TaskList = () => {
     switch (status) {
       case "Done":
         return "bg-green-500 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
-      case "Not started":
+      case "Pending":
         return "bg-gray-400 text-white text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
       default:
         return "bg-gray-400 text-black text-xs sm:text-sm md:text-base lg:text-sm px-2 py-1 rounded-full";
@@ -112,7 +112,7 @@ const TaskList = () => {
   
 
   return (
-    <div className="bg-gray-50 p-6 rounded-xl shadow-md">
+    <div className="bg-gray-50 rounded-xl shadow-md">
       <h2 className="text-2xl font-extrabold mb-6 text-gray-800 text-center">
         Task List
       </h2>
@@ -123,10 +123,10 @@ const TaskList = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="p-5 bg-white rounded-lg shadow-lg relative"
+            className="p-5 bg-white rounded-lg shadow-lg relative overflow-auto"
           >
             <h3 className="text-xl font-semibold mb-4 text-gray-700">{day}</h3>
-            <ul className="space-y-3">
+            <ul className="space-y-3 ">
               {tasks[day].map((task, idx) => (
                 <li key={idx} className="flex items-center justify-between">
                   <label className="flex items-center space-x-2">
@@ -147,11 +147,11 @@ const TaskList = () => {
                     </span>
                   </label>
                   <div className="flex items-center space-x-2">
-                    <span className={`px-2 py-1 w-20 text-center rounded-full ${priorityStyles(task.priority)}`}>
+                    <span className={`w-full text-center  bg-blue-500 text-white text-xs sm:text-sm md:text-base lg:text-sm  rounded-full ${priorityStyles(task.priority)}`}>
                       {task.priority}
                     </span>
                     <span
-                      className={`px-2 py-1 w-24 text-center rounded-full ${statusStyles(task.status)}`}
+                      className={`w-full text-center bg-blue-500 text-white text-xs sm:text-sm md:text-base lg:text-sm  rounded-full ${statusStyles(task.status)}`}
                     >
                       {task.status}
                     </span>
@@ -174,7 +174,7 @@ const TaskList = () => {
                 className="flex items-center space-x-2 px-3 py-2 bg-indigo-500 text-white rounded-lg shadow hover:bg-indigo-600 transition-transform transform hover:scale-105"
               >
                 <AiOutlinePlus size={18} />
-                <span>Add Task</span>
+                
               </button>
               {tasks[day].length > 0 && (
                 <button
@@ -182,7 +182,7 @@ const TaskList = () => {
                   className="flex items-center space-x-2 px-3 py-2 bg-red-500 text-white rounded-lg shadow hover:bg-red-600 transition-transform transform hover:scale-105"
                 >
                   <AiOutlineDelete size={18} />
-                  <span>Clear All</span>
+                  
                 </button>
               )}
             </div>

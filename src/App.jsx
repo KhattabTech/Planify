@@ -14,7 +14,6 @@ import StickyNotes from "./components/StickyNotes";
 import Footer from "./pages/Footer";
 import Notebook from "./components/Notebook";
 
-
 const queryClient = new QueryClient();
 
 const App = () => {
@@ -25,7 +24,7 @@ const App = () => {
           <div className="flex">
             <Sidebar />
 
-            <div className="flex-1 p-6 ">
+            <div className="flex-1 p-6">
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/habit-tracker" element={<HabitTracker />} />
