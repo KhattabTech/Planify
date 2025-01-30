@@ -29,5 +29,6 @@ This is a full-featured productivity dashboard designed to help users stay organ
 This project Planify a seamless and enjoyable experience for users looking to boost their productivity. Whether it’s managing tasks, tracking habits, or keeping notes, the app provides all the necessary tools in one place.
 
 Feel free to clone, contribute, or explore the code! 🚀
+![Uploading screencapture-localhost-5174-2025-01-09-00_32_05 (1).png…]()
 
 --- 
